@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Centro de Masajes</title>
+</head>
+<body>
+
+    <h1>Centro de Masajes</h1>
+
+    <nav>
+        <a href="{% url 'inicio' %}">Inicio</a> |
+        <a href="{% url 'buscar_cliente' %}">Buscar Cliente</a>
+    </nav>
+
+    <hr>
+
+    {% block contenido %}
+    {% endblock %}
+
+</body>
+</html>
