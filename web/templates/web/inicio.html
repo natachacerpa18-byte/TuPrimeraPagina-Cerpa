@@ -1,6 +1,35 @@
 {% extends 'web/base.html' %}
 
+<div class="text-center my-4">
+    <h1 class="fw-bold">Centro de Masajes</h1>
+    <p class="text-muted">Bienestar y relajación</p>
+</div>
+
 {% block contenido %}
-<h2>Bienvenidos</h2>
-<p>Turnos y servicios de masajes profesionales.</p>
+<div class="card shadow-sm p-4">
+    <h3 class="mb-3">Buscar Cliente</h3>
+
+    <form method="GET" class="row g-3 mb-4">
+        <div class="col-md-9">
+            <input type="text" name="nombre" class="form-control" placeholder="Nombre del cliente">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success w-100">
+                Buscar
+            </button>
+        </div>
+    </form>
+
+    <ul class="list-group">
+        {% for cliente in clientes %}
+            <li class="list-group-item">
+                {{ cliente.nombre }} - {{ cliente.email }}
+            </li>
+        {% empty %}
+            <li class="list-group-item text-muted">
+                No se encontraron clientes
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

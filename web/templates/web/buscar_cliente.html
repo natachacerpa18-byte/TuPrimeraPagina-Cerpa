@@ -1,20 +1,26 @@
 {% extends 'web/base.html' %}
 
 {% block contenido %}
-<h2>Buscar Cliente</h2>
+<h2 class="mb-4">Buscar Cliente</h2>
 
-<form method="GET">
-    <input type="text" name="nombre" placeholder="Nombre del cliente">
-    <button type="submit">Buscar</button>
+<form method="GET" class="row g-3 mb-4">
+    <div class="col-md-8">
+        <input type="text" name="nombre" class="form-control" placeholder="Nombre del cliente">
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-success w-100">Buscar</button>
+    </div>
 </form>
 
-<ul>
+<ul class="list-group">
     {% for cliente in clientes %}
-        <li>
+        <li class="list-group-item">
             {{ cliente.nombre }} - {{ cliente.email }}
         </li>
     {% empty %}
-        <li>No se encontraron clientes</li>
+        <li class="list-group-item text-muted">
+            No se encontraron clientes
+        </li>
     {% endfor %}
 </ul>
 {% endblock %}
