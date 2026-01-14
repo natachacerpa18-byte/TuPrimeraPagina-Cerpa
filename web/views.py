@@ -59,4 +59,9 @@ def crear_turno(request):
         form = TurnoForm()
 
     return render(request, 'web/crear_turno.html', {'form': form})
-    
+
+
+from django.shortcuts import render
+
+def about(request):
+    return render(request, "web/about.html")

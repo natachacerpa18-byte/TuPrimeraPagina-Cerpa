@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Centro de Masajes</title>
-
-    <!-- Bootstrap CSS (CDN oficial) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'inicio' %}">Centro de Masajes</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'inicio' %}">Centro de Masajes</a>
 
+        <div class="collapse navbar-collapse">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'inicio' %}">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">Acerca de mí</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'buscar_cliente' %}">Buscar Cliente</a>
@@ -32,53 +34,14 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- HEADER -->
-    <header class="text-center my-4">
-        <h1 class="fw-bold">Centro de Masajes</h1>
-        <p class="text-muted">Bienestar y relajación</p>
-    </header>
-
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="container mb-5">
-        {% block contenido %}
-        {% endblock %}
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="bg-dark text-light mt-auto">
-        <div class="container py-4">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Contacto</h5>
-                    <p class="mb-1">Email: contacto@centrodemasajes.com</p>
-                    <p>Tel: 1234-5678</p>
-                </div>
-
-                <div class="col-md-4">
-                    <h5>Sobre nosotros</h5>
-                    <p>
-                        Centro de Masajes dedicado al bienestar y la relajación.
-                    </p>
-                </div>
-
-                <div class="col-md-4">
-                    <h5>Redes</h5>
-                    <p>Instagram · Facebook · WhatsApp</p>
-                </div>
-            </div>
-
-            <hr class="border-secondary">
-
-            <div class="text-center">
-                <small>© 2024 Centro de Masajes</small>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<main class="container my-4">
+    {% block contenido %}
+    {% endblock %}
+</main>
 
 </body>
 </html>
+
