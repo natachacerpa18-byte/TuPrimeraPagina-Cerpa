@@ -6,18 +6,18 @@ from .models import Cliente, Servicio, Turno
 class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
-        fields = '__all__'
+        fields = ["nombre", "email", "telefono"]
 
 
 # Formulario para cargar servicios
 class ServicioForm(forms.ModelForm):
     class Meta:
         model = Servicio
-        fields = '__all__'
+        fields = ["nombre", "precio"]
 
 
 # Formulario para cargar turnos
 class TurnoForm(forms.ModelForm):
     class Meta:
         model = Turno
-        fields = '__all__'
+        fields = ["cliente", "servicio", "fecha"]
