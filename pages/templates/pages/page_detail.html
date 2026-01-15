@@ -1,0 +1,14 @@
+{% extends 'web/base.html' %}
+
+{% block contenido %}
+<h1>{{ page.titulo }}</h1>
+<h3>{{ page.subtitulo }}</h3>
+
+<p>{{ page.contenido|safe }}</p>
+
+<p>
+    <small>Publicado el {{ page.fecha_creacion }}</small>
+</p>
+
+<a href="{% url 'page_list' %}">Volver</a>
+{% endblock %}
