@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Masajes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">Centro de Masajes</a>
+    <div class="d-flex gap-2">
+      <a class="btn btn-outline-light btn-sm" href="/about/">Acerca de mí</a>
+      <a class="btn btn-outline-light btn-sm" href="/pages/">Pages</a>
+    </div>
+  </div>
+</nav>
+
+<main class="container my-4">
+  <h1 class="mb-2">Tipos de Masaje</h1>
+
+
+  <p class="text-muted">Total de páginas en BD: {{ total_pages }}</p>
+
+  {% if pages %}
+    <label class="form-label">Elegí un masaje:</label>
+
+    <select id="pageSelect" class="form-select mb-4">
+      <option value="">-- Seleccionar --</option>
+
+      {% for p in pages %}
+        <option
+          value="{{ p.id }}"
+          data-titulo="{{ p.titulo|escape }}"
+          data-subtitulo="{{ p.subtitulo|escape }}"
+          data-fecha="{{ p.fecha }}"
+          {% if p.imagen %}
+            data-img="{{ p.imagen.url }}"
+          {% else %}
+            data-img=""
+          {% endif %}
+          data-detalle="{% url 'page_detail' p.id %}"
+        >
+          {{ p.titulo }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <div id="card" class="card d-none">
+      <img id="img" class="card-img-top d-none" alt="">
+
+      <div class="card-body">
+        <h3 id="titulo" class="card-title"></h3>
+        <p id="subtitulo" class="card-text text-muted"></p>
+        <p id="fecha" class="small text-secondary mb-3"></p>
+
+        <a id="verMas" class="btn btn-primary" href="#">Ver detalle</a>
+      </div>
+    </div>
+
+  {% else %}
+    <p>No hay páginas aún.</p>
+  {% endif %}
+</main>
+
+<script>
+  const select = document.getElementById("pageSelect");
+  const card = document.getElementById("card");
+  const titulo = document.getElementById("titulo");
+  const subtitulo = document.getElementById("subtitulo");
+  const fecha = document.getElementById("fecha");
+  const img = document.getElementById("img");
+  const verMas = document.getElementById("verMas");
+
+  if (select) {
+    select.addEventListener("change", () => {
+      const opt = select.options[select.selectedIndex];
+      const id = select.value;
+
+      if (!id) {
+        card.classList.add("d-none");
+        return;
+      }
+
+      titulo.textContent = opt.dataset.titulo || "";
+      subtitulo.textContent = opt.dataset.subtitulo || "";
+      fecha.textContent = opt.dataset.fecha ? ("Publicado: " + opt.dataset.fecha) : "";
+      verMas.href = opt.dataset.detalle || "#";
+
+      const src = opt.dataset.img || "";
+      if (src) {
+        img.src = src;
+        img.alt = opt.dataset.titulo || "imagen";
+        img.classList.remove("d-none");
+      } else {
+        img.classList.add("d-none");
+      }
+
+      card.classList.remove("d-none");
+    });
+  }
+</script>
+
+</body>
+</html>
