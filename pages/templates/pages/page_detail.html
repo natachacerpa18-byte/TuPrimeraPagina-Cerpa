@@ -1,14 +1,22 @@
-{% extends 'web/base.html' %}
+{% extends 'base.html' %}
 
 {% block contenido %}
 <h1>{{ page.titulo }}</h1>
-<h3>{{ page.subtitulo }}</h3>
+<h4>{{ page.subtitulo }}</h4>
+<p><small>Publicado el {{ page.fecha }}</small></p>
 
-<p>{{ page.contenido|safe }}</p>
+{% if page.imagen %}
+  <img src="{{ page.imagen.url }}" class="img-fluid mb-3" alt="{{ page.titulo }}">
+{% endif %}
 
-<p>
-    <small>Publicado el {{ page.fecha_creacion }}</small>
-</p>
+<div>
+  {{ page.contenido|safe }}
+</div>
 
-<a href="{% url 'page_list' %}">Volver</a>
+<a href="{% url 'page_list' %}" class="btn btn-secondary mt-3">Volver</a>
+
+{% if user.is_authenticated %}
+  <a href="{% url 'page_update' page.pk %}" class="btn btn-warning mt-3">Editar</a>
+  <a href="{% url 'page_delete' page.pk %}" class="btn btn-danger mt-3">Borrar</a>
+{% endif %}
 {% endblock %}
