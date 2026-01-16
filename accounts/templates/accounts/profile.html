@@ -1,0 +1,38 @@
+{% extends 'web/base.html' %}
+
+{% block contenido %}
+<h1>Mi Perfil</h1>
+
+<div class="card" style="max-width: 720px;">
+  <div class="card-body">
+    <div class="d-flex align-items-center gap-3">
+      {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="avatar" width="80" height="80" class="rounded-circle object-fit-cover">
+      {% else %}
+        <div class="rounded-circle bg-secondary" style="width:80px;height:80px;"></div>
+      {% endif %}
+
+      <div>
+        <h5 class="mb-1">{{ request.user.get_full_name|default:request.user.username }}</h5>
+        <div class="text-muted">{{ request.user.email }}</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <p class="mb-1"><strong>Biografía:</strong></p>
+    <p class="text-muted">{{ profile.bio|default:"(sin biografía)" }}</p>
+
+    <p class="mb-2"><strong>Fecha de nacimiento:</strong>
+      <span class="text-muted">
+        {% if profile.birth_date %}{{ profile.birth_date }}{% else %}(sin dato){% endif %}
+      </span>
+    </p>
+
+    <div class="d-flex gap-2">
+      <a class="btn btn-primary" href="{% url 'profile_edit' %}">Editar perfil</a>
+      <a class="btn btn-outline-secondary" href="{% url 'password_change' %}">Cambiar password</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
