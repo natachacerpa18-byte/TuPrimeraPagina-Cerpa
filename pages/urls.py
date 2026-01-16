@@ -1,16 +1,10 @@
 from django.urls import path
-from .views import (
-    page_list,
-    page_detail,
-    PageCreateView,
-    PageUpdateView,
-    PageDeleteView,
-)
+from . import views
 
 urlpatterns = [
-    path("", page_list, name="page_list"),
-    path("crear/", PageCreateView.as_view(), name="page_create"),
-    path("<int:pk>/", page_detail, name="page_detail"),
-    path("<int:pk>/editar/", PageUpdateView.as_view(), name="page_update"),
-    path("<int:pk>/borrar/", PageDeleteView.as_view(), name="page_delete"),
+    path("", views.page_list, name="page_list"),
+    path("crear/", views.PageCreateView.as_view(), name="page_create"),
+    path("<int:pk>/", views.page_detail, name="page_detail"),
+    path("<int:pk>/editar/", views.PageUpdateView.as_view(), name="page_update"),
+    path("<int:pk>/borrar/", views.PageDeleteView.as_view(), name="page_delete"),
 ]
