@@ -1,0 +1,13 @@
+{% extends 'web/base.html' %}
+
+{% block contenido %}
+<h1>Borrar Masaje</h1>
+
+<p>¿Seguro querés borrar: <strong>{{ object.titulo }}</strong>?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Sí, borrar</button>
+  <a href="{% url 'page_list' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

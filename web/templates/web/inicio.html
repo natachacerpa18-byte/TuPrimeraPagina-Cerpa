@@ -2,78 +2,55 @@
 
 {% block contenido %}
 
-<div class="text-center mb-5">
-  <h1 class="display-5 fw-bold">Centro de Masajes</h1>
-  <p class="text-muted">Bienestar y relajación</p>
+<!-- HERO -->
+<div class="p-5 mb-5 bg-white rounded-4 shadow-sm text-center">
+  <h1 class="display-5 fw-bold mb-2">Centro de Masajes</h1>
+  <p class="text-muted fs-5 mb-4">Bienestar y relajación</p>
+
+  <div class="d-flex justify-content-center gap-3 flex-wrap">
+    <a href="{% url 'page_list' %}" class="btn btn-primary btn-lg">
+      Ver masajes
+    </a>
+    <a href="{% url 'crear_turno' %}" class="btn btn-success btn-lg">
+      Reservar turno
+    </a>
+  </div>
 </div>
 
+<!-- INFO CARDS -->
 <div class="row g-4">
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="card h-100 shadow-sm">
       <div class="card-body">
-        <h3 class="card-title">Masajes</h3>
+        <h5 class="card-title">Masajes Relajantes</h5>
         <p class="card-text text-muted">
-          Mirá los tipos de masaje disponibles, con descripción e imágenes.
+          Ideales para bajar el estrés, mejorar el descanso y relajar el cuerpo.
         </p>
-        <a href="{% url 'page_list' %}" class="btn btn-primary">
-          Ver masajes
-        </a>
       </div>
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="card h-100 shadow-sm">
       <div class="card-body">
-        <h3 class="card-title">Turnos</h3>
+        <h5 class="card-title">Masajes Descontracturantes</h5>
         <p class="card-text text-muted">
-          Registrá un turno nuevo y gestioná tu agenda.
-        </p>
-        <a href="{% url 'crear_turno' %}" class="btn btn-success">
-          Crear turno
-        </a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<hr class="my-5">
-
-<div class="row g-4">
-  <div class="col-md-4">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">Relajantes</h5>
-        <p class="card-text text-muted">
-          Para bajar el estrés, mejorar el descanso y relajar el cuerpo.
+          Perfectos para contracturas, tensión muscular y dolor localizado.
         </p>
       </div>
     </div>
   </div>
 
   <div class="col-md-4">
-    <div class="card h-100">
+    <div class="card h-100 shadow-sm">
       <div class="card-body">
-        <h5 class="card-title">Descontracturantes</h5>
+        <h5 class="card-title">Atención Personalizada</h5>
         <p class="card-text text-muted">
-          Ideal para contracturas, tensión muscular y dolor localizado.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4">
-    <div class="card h-100">
-      <div class="card-body">
-        <h5 class="card-title">Atención personalizada</h5>
-        <p class="card-text text-muted">
-          Elegimos el enfoque según tu necesidad y tu historial.
+          Elegimos el enfoque según tu necesidad para mejores resultados.
         </p>
       </div>
     </div>
   </div>
 </div>
-
 {% endblock %}
