@@ -3,21 +3,51 @@
 {% block titulo %}Mis Pages{% endblock %}
 
 {% block contenido %}
-<h1>Mis Páginas</h1>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="m-0">Mis Páginas</h1>
+
+  {% if user.is_authenticated %}
+    <a class="btn btn-success" href="{% url 'page_create' %}">
+      Crear nueva Page
+    </a>
+  {% endif %}
+</div>
 
 {% if pages %}
   <div class="row">
     {% for page in pages %}
-      <div class="col-md-4 mb-3">
-        <div class="card h-100">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+
           {% if page.imagen %}
-            <img src="{{ page.imagen.url }}" class="card-img-top" alt="{{ page.titulo }}">
+            <img src="{{ page.imagen.url }}"
+                 class="card-img-top"
+                 alt="{{ page.titulo }}"
+                 style="height: 160px; object-fit: cover;">
           {% endif %}
-          <div class="card-body">
+
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ page.titulo }}</h5>
-            <p class="card-text">{{ page.subtitulo|truncatewords:20 }}</p>
-            <a href="{% url 'page_detail' page.pk %}" class="btn btn-primary">Leer más</a>
+            <p class="card-text text-muted">
+              {{ page.subtitulo|truncatewords:18 }}
+            </p>
+
+            <a href="{% url 'page_detail' page.pk %}" class="btn btn-primary mt-auto">
+              Ver detalle
+            </a>
+
+            {% if user.is_authenticated %}
+              <div class="mt-2 d-flex gap-2">
+                <a href="{% url 'page_update' page.pk %}" class="btn btn-warning btn-sm">
+                  Editar
+                </a>
+                <a href="{% url 'page_delete' page.pk %}" class="btn btn-danger btn-sm">
+                  Borrar
+                </a>
+              </div>
+            {% endif %}
           </div>
+
         </div>
       </div>
     {% endfor %}
@@ -26,3 +56,4 @@
   <p>No hay páginas aún.</p>
 {% endif %}
 {% endblock %}
+

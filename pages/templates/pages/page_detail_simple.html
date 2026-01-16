@@ -9,7 +9,7 @@
 
 <nav class="navbar navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="/pages/">Volver</a>
+    <a class="navbar-brand" href="{% url 'page_list' %}">Volver</a>
   </div>
 </nav>
 
@@ -25,6 +25,11 @@
   <div class="mt-3">
     {{ page.contenido|safe }}
   </div>
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'page_update' page.pk %}" class="btn btn-warning mt-3">Editar</a>
+    <a href="{% url 'page_delete' page.pk %}" class="btn btn-danger mt-3">Borrar</a>
+  {% endif %}
 </main>
 
 </body>
