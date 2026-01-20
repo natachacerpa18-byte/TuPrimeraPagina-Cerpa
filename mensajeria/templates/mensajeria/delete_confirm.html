@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<h1>Borrar mensaje</h1>
+
+<p>¿Seguro querés borrar <strong>"{{ msg.subject }}"</strong>?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button class="btn btn-danger" type="submit">Sí, borrar</button>
+  <a class="btn btn-secondary" href="{% url 'message_detail' msg.pk %}">Cancelar</a>
+</form>
+{% endblock %}

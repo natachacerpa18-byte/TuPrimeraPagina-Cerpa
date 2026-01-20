@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="mb-0">Enviados</h1>
+  <a class="btn btn-success" href="{% url 'compose' %}">Nuevo mensaje</a>
+</div>
+
+<div class="mb-3">
+  <a class="btn btn-outline-secondary btn-sm" href="{% url 'inbox' %}">Volver a bandeja</a>
+</div>
+
+{% if messages %}
+  <div class="list-group">
+    {% for m in messages %}
+      <a href="{% url 'message_detail' m.pk %}" class="list-group-item list-group-item-action">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">✉️ {{ m.subject }}</h5>
+          <small>{{ m.created_at|date:"d/m/Y H:i" }}</small>
+        </div>
+        <p class="mb-1 text-muted">Para: {{ m.recipient.username }}</p>
+        <small class="text-muted">{{ m.body|truncatechars:90 }}</small>
+      </a>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-muted">Todavía no enviaste mensajes.</p>
+{% endif %}
+{% endblock %}
