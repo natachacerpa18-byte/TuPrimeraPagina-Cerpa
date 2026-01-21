@@ -1,38 +1,34 @@
-{% extends 'web/base.html' %}
+{% extends "web/base.html" %}
 
 {% block contenido %}
-<h1>Mi Perfil</h1>
 
-<div class="card" style="max-width: 720px;">
-  <div class="card-body">
-    <div class="d-flex align-items-center gap-3">
-      {% if profile.avatar %}
-        <img src="{{ profile.avatar.url }}" alt="avatar" width="80" height="80" class="rounded-circle object-fit-cover">
-      {% else %}
-        <div class="rounded-circle bg-secondary" style="width:80px;height:80px;"></div>
-      {% endif %}
+<div class="container mt-4">
+  <h2 class="mb-3">Mi perfil</h2>
 
-      <div>
-        <h5 class="mb-1">{{ request.user.get_full_name|default:request.user.username }}</h5>
-        <div class="text-muted">{{ request.user.email }}</div>
-      </div>
-    </div>
+  <div class="card p-3 shadow-sm">
+    <p class="mb-1"><b>Usuario:</b> {{ user.username }}</p>
+    <p class="mb-1"><b>Nombre:</b> {{ user.first_name|default:"-" }}</p>
+    <p class="mb-1"><b>Apellido:</b> {{ user.last_name|default:"-" }}</p>
+    <p class="mb-3"><b>Email:</b> {{ user.email|default:"-" }}</p>
 
     <hr>
 
-    <p class="mb-1"><strong>Biografía:</strong></p>
-    <p class="text-muted">{{ profile.bio|default:"(sin biografía)" }}</p>
+    {% if profile.avatar %}
+      <div class="mb-3">
+        <img src="{{ profile.avatar.url }}" alt="avatar" style="max-width:200px;border-radius:12px;">
+      </div>
+    {% else %}
+      <p class="text-muted">Sin avatar</p>
+    {% endif %}
 
-    <p class="mb-2"><strong>Fecha de nacimiento:</strong>
-      <span class="text-muted">
-        {% if profile.birth_date %}{{ profile.birth_date }}{% else %}(sin dato){% endif %}
-      </span>
-    </p>
+    <p class="mb-1"><b>Bio:</b> {{ profile.bio|default:"-" }}</p>
+    <p class="mb-3"><b>Fecha de nacimiento:</b> {{ profile.birth_date|default:"-" }}</p>
 
     <div class="d-flex gap-2">
-      <a class="btn btn-primary" href="{% url 'profile_edit' %}">Editar perfil</a>
-      <a class="btn btn-outline-secondary" href="{% url 'password_change' %}">Cambiar password</a>
+      <a class="btn btn-primary" href="{% url 'accounts:profile_edit' %}">Editar perfil</a>
+      <a class="btn btn-warning" href="{% url 'accounts:password_change' %}">Cambiar contraseña</a>
     </div>
   </div>
 </div>
+
 {% endblock %}

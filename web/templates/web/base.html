@@ -78,16 +78,16 @@
               <li><hr class="dropdown-divider"></li>
 
               <!-- ✅ Perfil -->
-              <li><a class="dropdown-item" href="{% url 'profile' %}">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Mi perfil</a></li>
 
               <!-- ✅ Editar Perfil -->
-              <li><a class="dropdown-item" href="{% url 'profile_edit' %}">Editar perfil</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:profile_edit' %}">Editar perfil</a></li>
 
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Cerrar sesión</a></li>
             {% else %}
-              <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
-              <li><a class="dropdown-item" href="{% url 'signup' %}">Registrarse</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:login' %}">Iniciar sesión</a></li>
+              <li><a class="dropdown-item" href="{% url 'accounts:signup' %}">Registrarse</a></li>
             {% endif %}
           </ul>
         </li>
